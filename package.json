@@ -1,0 +1,40 @@
+{
+    "author": "",
+    "browserify": {
+        "transform": [
+            [
+                "reactify",
+                {
+                    "es6": true,
+                    "extension": [
+                        "jsx",
+                        "js"
+                    ],
+                    "visitors": [
+                        "es6-destructuring-jstransform",
+                        "jstransform/visitors/es6-arrow-function-visitors",
+                        "jstransform/visitors/es6-class-visitors",
+                        "jstransform/visitors/es6-object-concise-method-visitors"
+                    ]
+                }
+            ],
+            "envify"
+        ]
+    },
+    "dependencies": {
+        "browserify": "^4.2.0",
+        "envify": "^2.0.0",
+        "reactify": "^0.13.1"
+    },
+    "description": "",
+    "license": "ISC",
+    "main": "src/index.js",
+    "name": "experiment",
+        "scripts": {
+            "start": "STATIC_ROOT=./static watchify -o browser-bundle.js -v -d .",
+            "build": "STATIC_ROOT=./static NODE_ENV=production browserify . | uglifyjs -cm > browser-bundle.min.js",
+            "collect-static": "collect-static . ./static",
+            "test": "echo \"Error: no test specified\" && exit 1"
+        },
+    "version": "0.0.0"
+}
